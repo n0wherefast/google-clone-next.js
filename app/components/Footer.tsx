@@ -13,7 +13,7 @@ function Footer() {
                 <div className='xl:hidden pb-8'>
                     <a className=' hover:underline' href=""> Il nostro terzo decennio di azione per il clima </a>
                 </div>
-            <div className='flex flex-col md:flex-row w-full h-auto  text-sm items-center justify-between'>
+            <div className=' p-2 flex flex-col md:flex-row w-full h-auto text-xs sm:text-sm items-center justify-between'>
                 
                 <div className='flex w-full justify-center gap-10'>
                     <a className=' hover:underline' href="">Publicità</a>
