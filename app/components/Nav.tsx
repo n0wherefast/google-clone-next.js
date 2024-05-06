@@ -2,9 +2,30 @@
 import Link from 'next/link';
 import React from 'react'
 import { CgMenuGridO } from "react-icons/cg";
-import {signInWithGoogle} from "../firebase/Firebase"
+import { useGlobalContext } from '../context/context';
+import Image from 'next/image';
+import { Interface } from 'readline';
+import { auth } from '../firebase/Firebase';
+ 
+
+interface Auth {
+    email? : string ,
+    name ?: string ,
+    photoProfile? : string  ;
+}
+
+export interface Context {
+   authData ?: {},
+   signInWithGoogle? : any,
+}
+
 
 function Nav() {
+    
+    const Data = useGlobalContext()
+    const {signInWithGoogle ,authData } :Context = Data
+    const { photoProfile } : Auth  = authData!
+     
   return (
     <nav className='   w-full  flex justify-between items-center p-2  text-sm '>
         <div className=' flex gap-4 p-3 '>
@@ -22,9 +43,10 @@ function Nav() {
                 <div className='w-10 h-10 rounded-full hover:bg-zinc-100 flex justify-center items-center'>
                     <CgMenuGridO size={25} className=' text-zinc-600 cursor-pointer' />
                 </div>
+                { photoProfile  ? <Image priority className=' rounded-full' src={photoProfile} width={50} height={50} alt='photo ptofile'/> :
                 <button onClick={()=>signInWithGoogle()} className=' traking-[.25px] cursor-pointer align-middle box-border  text-[#fff] ml-[8px] border border-transparent bg-[#1a73e8] hover:bg-[#1b66c9] font-[500] text-[14px] leading-[16px] mr-[8px] px-[23px] py-[9px] text-center rounded-[4px]  '
                     >Accedi
-                </button>
+                </button>}
             </div>
         </div>
     </nav>

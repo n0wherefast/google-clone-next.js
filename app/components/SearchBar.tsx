@@ -29,9 +29,9 @@ function SearchBar() {
                 </div>
                 <div  className={` ${isClick == true ? 'flex':'hidden'}  mt-2 w-full min-h-36 flex-col justify-center p-2 pl-5 gap-2 `}>
                 <div className='w-full border-b border-zinc-200'/>
-
+                      
                     <h2 className=' w-full font-semibold'>Ricerche di Tendenza</h2>
-                    <div className=''>
+                    <div className='' onClick={()=>setIsClick(false)}>
                         <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
                         <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
                         <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
