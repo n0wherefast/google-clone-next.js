@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
   return (
     <>
-        <div className=' sm:mb-2 w-full min-h-[11.5rem] md:min-h-[8rem] bg-zinc-100 flex flex-col items-center '>
+        <div className=' sm:mb-2 w-full min-h-[11rem] md:min-h-[7rem] bg-zinc-100 flex flex-col items-center '>
             <div className='w-full p-3'>
                 <p className=' text-md'>
                     Italia
@@ -12,9 +12,9 @@ function Footer() {
                 <div className='w-full p-1 border-b border-zinc-200'/>
             </div>
                 <div className='xl:hidden pb-8'>
-                    <Link className=' hover:underline' href="/"> Il nostro terzo decennio di azione per il clima </Link>
+                    <Link className=' text-sm hover:underline' href="/"> Il nostro terzo decennio di azione per il clima </Link>
                 </div>
-            <div className=' p-2 flex flex-col md:flex-row w-full h-auto text-xs sm:text-sm items-center justify-between'>
+            <div className=' p-2 flex flex-col md:flex-row w-full h-auto text-[10px] sm:text-sm items-center justify-between'>
                 
                 <div className='flex w-full justify-center gap-10'>
                     <Link className=' hover:underline' href="/">Publicità</Link>

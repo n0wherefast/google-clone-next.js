@@ -1,11 +1,14 @@
 'use client'
 import React, { useState } from 'react'
 import { MdTrendingUp } from "react-icons/md";
+import { useGlobalContext } from "../context/context";
+import { Context } from './Nav';
 
 
 function SearchBar() {
-    const [isClick,setIsClick] = useState(false)
-    console.log(isClick)
+    const context = useGlobalContext()
+    const {isClick,setIsClick} : Context = context
+    
   return (
     <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5'>
         <form action="" className='w-full'>

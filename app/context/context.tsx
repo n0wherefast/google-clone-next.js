@@ -8,6 +8,8 @@ const AppContext = createContext({})
 
 const Provider : React.FC<{children:ReactNode}> =({children}) =>{
     const [authData,setAuthData] = useState({})
+    const [isClick,setIsClick] = useState(false)
+
     const provider =  new GoogleAuthProvider()
 
      const signInWithGoogle = () => {
@@ -24,7 +26,7 @@ const Provider : React.FC<{children:ReactNode}> =({children}) =>{
     }
 
     return(
-        <AppContext.Provider value={{signInWithGoogle ,authData}}>
+        <AppContext.Provider value={{signInWithGoogle ,authData,isClick,setIsClick}}>
             {children}
         </AppContext.Provider>
     )

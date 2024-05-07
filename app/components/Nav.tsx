@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import React from 'react'
+import React,{useState} from 'react'
 import { CgMenuGridO } from "react-icons/cg";
 import { useGlobalContext } from '../context/context';
 import Image from 'next/image';
@@ -17,6 +17,8 @@ interface Auth {
 export interface Context {
    authData ?: {},
    signInWithGoogle? : any,
+   isClick ? : boolean
+   setIsClick ? : any ,
 }
 
 
@@ -25,13 +27,15 @@ function Nav() {
     const Data = useGlobalContext()
     const {signInWithGoogle ,authData } :Context = Data
     const { photoProfile } : Auth  = authData!
+    const [active,setActive] = useState(true)
      
   return (
     <nav className='   w-full  flex justify-between items-center p-2  text-sm '>
         <div className=' flex gap-4 p-3 '>
           <Link className='hidden sm:block hover:underline' href="/">Chi Siamo</Link>
           <Link className=' hidden sm:block hover:underline' href="/">Google Store</Link> 
-          <Link className='block sm:hidden hover:underline' href="/">Immagini</Link> 
+          <Link onClick={()=>setActive(true)} className={`block sm:hidden hover:sm:underline  ${ active == true ?'underline' :''} decoration-solid decoration-2  decoration-blue-500  `} href="/">Tutti</Link> 
+          <Link onClick={()=>setActive(false)} className={`${active==false? 'underline':''} decoration-solid decoration-2  decoration-blue-500  block sm:hidden hover:underline`} href="/">Immagini</Link> 
  
         </div>
         <div className='flex items-center gap-5'>
