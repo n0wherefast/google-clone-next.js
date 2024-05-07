@@ -7,7 +7,13 @@ export const words = [
 "leone", "montagna", "nave", "ombrello", "panda", "quercia", "riccio", "stella",
 "tartaruga", "uva", "violino", "waffle", "xilofono", "yogurt", "zanzara",
 "alligatore", "babbo natale", "coccodrillo", "dattero", "elefante", "foglia", 
-"gabbiano", "ippopotamo", "jeep", "koala", "leopardo", "mangusta", "noce", "orologio", "panda", "quaderno", "riccio", "scimmia", "tigre", "unicorno", "viola", "zebra", "ananas", "barca", "cane", "dado", "elefante", "fragola", "giraffa", "hula hoop", "iglù", "jolly", "koala", "limone", "mela", "nuvola", "orso", "pesca", "quadro", "rana", "scoiattolo", "tigre", "unicorno", "valigia", "zaino", "albero", "balena", "caramella", "delfino", "elefante", "fico", "giraffa", "hamburger", "isola", "jeep", "kiwi", "luna", "mela", "nuvola", "orso", "pesce", "quadro", "rana", "scooter", "tigre", "unicorno", "vino", "zucchero", "anatra",
+"gabbiano", "ippopotamo", "jeep", "koala", "leopardo", "mangusta", "noce", "orologio",
+ "panda", "quaderno", "riccio", "scimmia", "tigre", "unicorno", "viola", "zebra", "ananas",
+  "barca", "cane", "dado", "elefante", "fragola", "giraffa", "hula hoop", "iglù", "jolly", 
+  "koala", "limone", "mela", "nuvola", "orso", "pesca", "quadro", "rana", "scoiattolo", "tigre",
+   "unicorno", "valigia", "zaino", "albero", "balena", "caramella", "delfino", "elefante", "fico",
+    "giraffa", "hamburger", "isola", "jeep", "kiwi", "luna", "mela", "nuvola", "orso", "pesce", "quadro",
+     "rana", "scooter", "tigre", "unicorno", "vino", "zucchero", "anatra",
 "banane", "cavallo", "delfino", "elefante", "fragola", "gabbiano", "hot dog",
 "isola", "judo", "koala", "limone", "mela", "nocciola", "orso", "panda", "quadro",
-"riccio", "scoiattolo", "tigre", "uva", "volpe", "zanella"]
+"riccio", "scoiattolo", "tigre", "uva", "volpe", "zanella","pizza","surf","voli"]

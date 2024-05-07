@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdTrendingUp } from "react-icons/md";
 import { useGlobalContext } from "../context/context";
 import { Context } from './Nav';
@@ -11,12 +11,10 @@ function SearchBar() {
     const {isClick,setIsClick} : Context = context
     const lens = <svg focusable="false" fill='#999999' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
 
-
-   
-
     const [value,setValue] = useState('')
     const [predicition,setPredicition] = useState <React.ReactNode>()
     const isEmpty = value == '' ? 'hidden' : '' ;
+    const [randomWords,setRandomWords] = useState<React.ReactNode>()
     console.log(value)
 
     const selected = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -34,6 +32,31 @@ function SearchBar() {
             </li>
         )))
     }
+    const randomwords = () => {
+        const shuffle = (arr:string[]) => {
+            return arr.sort(()=>Math.random() - 0.5)
+        }
+        const newArr = shuffle(words).slice(0,9)  
+         setRandomWords(newArr.map((word,indx) =>(
+            <li className='list-none hover:bg-slate-100 p-2 flex gap-2 items-center' key={indx} onClick={(e)=>selected(e)}><MdTrendingUp size={30}/> {word} </li>
+         )))
+             
+    }
+
+//  setRandomWords(newArr.map((word,indx)=>(
+//             <li key={indx} className='  list-none hover:bg-slate-100 p-2 flex gap-2 items-center' >
+//                {word}
+//             </li>
+//         )) )
+
+    useEffect(()=>{
+        randomwords()
+      
+        
+    },[])
+   
+
+   console.log(randomWords)
 
   return (
     <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5 bg-white'>
@@ -64,11 +87,9 @@ function SearchBar() {
                 <div className='w-full border-b border-zinc-200 bg-white '/> 
                     <h2 className=' w-full font-semibold'>Ricerche di Tendenza</h2>
                         <div className={` ${isEmpty}`}>{predicition}</div>
-                    <div className='bg-white' onClick={()=>setIsClick(false)}>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Pizza</p>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Surf</p>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Fuerteventura</p>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Voli</p>
+                        
+                    <div className='bg-white ' onClick={()=>setIsClick(false)}>
+                        { randomWords   }
                     </div>
                </div>
             </div>
