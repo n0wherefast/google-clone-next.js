@@ -3,23 +3,53 @@ import React, { useState } from 'react'
 import { MdTrendingUp } from "react-icons/md";
 import { useGlobalContext } from "../context/context";
 import { Context } from './Nav';
+import { words } from '../data';
 
 
 function SearchBar() {
     const context = useGlobalContext()
     const {isClick,setIsClick} : Context = context
-    
+    const lens = <svg focusable="false" fill='#999999' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+
+
+   
+
+    const [value,setValue] = useState('')
+    const [predicition,setPredicition] = useState <React.ReactNode>()
+    const isEmpty = value == '' ? 'hidden' : '' ;
+    console.log(value)
+
+    const selected = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+        setValue(e.currentTarget.textContent!)
+        setPredicition('')
+    }
+
+    const predictionFun = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setValue(e.target.value)
+        if(e.target.value === '') return []
+        const matchWord = words.filter(word=> word.startsWith(e.target.value))
+        setPredicition(matchWord.map((word,indx) =>(
+            <li key={indx} className=' list-none hover:bg-slate-100 p-2 flex gap-2 items-center' onClick={(e)=>selected(e)}>
+               <div className='w-4'>{lens}</div> {word}
+            </li>
+        )))
+    }
+
   return (
-    <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5'>
+    <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5 bg-white'>
         <form action="" className='w-full'>
         <div className=' my-0 mb-6 mx-auto w-auto max-w-[584px] pt-[6px] relative '>
             <div className={`${isClick== true? 'flex-col':'flex-row'} hover:shadow-[0_2px_10px_rgba(0,0,0,0.3)] flex  z-[10] relative min-h-[44px] border border-[#dfe1e5;] shadow-none rounded-3xl my-0 w-auto  max-w-[584px]`}>  
                 <div className='  flex  items-center  flex-1 pt-[5px] pr-[8px] p-[5px]  pl-[14px] '>
                     <div className='w-5'>
-                      <svg focusable="false" fill='#999999' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+                        {lens}
                     </div>
                     <div className='flex flex-wrap flex-1 mt-2'>
-                         <input onClick={()=>(setIsClick(true))}  type="area"  className=' w-full  mb-2 overflow-x-hidden resize-none bg-transparent border-none m-0 p-0 text-black break-words outline-none flex leading-[22px]' />
+                         <input onClick={()=>(setIsClick(true))}
+                                onChange={(e)=>predictionFun(e)}
+                                value={value}
+                                type="area" 
+                                className=' w-full  mb-2 overflow-x-hidden resize-none  bg-white border-none m-0 p-0 text-black break-words outline-none flex leading-[22px]' />
                      </div>
                     <div className='flex  gap-2 h-auto w-auto items-center'>
                        <div className=" cursor-pointer ">
@@ -30,15 +60,15 @@ function SearchBar() {
                     </div>  
                     </div>
                 </div>
-                <div  className={` ${isClick == true ? 'flex':'hidden'}  mt-2 w-full min-h-36 flex-col justify-center p-2 pl-5 gap-2 `}>
-                <div className='w-full border-b border-zinc-200'/>
-                      
+                <div  className={` ${isClick == true ? 'flex':'hidden'} bg-white rounded-3xl  mt-2 w-full min-h-36 flex-col justify-center p-2 pl-5 gap-2 `}>
+                <div className='w-full border-b border-zinc-200 bg-white '/> 
                     <h2 className=' w-full font-semibold'>Ricerche di Tendenza</h2>
-                    <div className='' onClick={()=>setIsClick(false)}>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
-                        <p className='flex items-center gap-2'> <MdTrendingUp/> Lorem ipsum</p>
+                        <div className={` ${isEmpty}`}>{predicition}</div>
+                    <div className='bg-white' onClick={()=>setIsClick(false)}>
+                        <p className='flex items-center gap-2'> <MdTrendingUp/> Pizza</p>
+                        <p className='flex items-center gap-2'> <MdTrendingUp/> Surf</p>
+                        <p className='flex items-center gap-2'> <MdTrendingUp/> Fuerteventura</p>
+                        <p className='flex items-center gap-2'> <MdTrendingUp/> Voli</p>
                     </div>
                </div>
             </div>
