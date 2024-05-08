@@ -15,23 +15,33 @@ function SearchBar() {
     const [predicition,setPredicition] = useState <React.ReactNode>()
     const isEmpty = value == '' ? 'hidden' : '' ;
     const [randomWords,setRandomWords] = useState<React.ReactNode>()
-    console.log(value)
 
     const selected = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
         setValue(e.currentTarget.textContent!)
         setPredicition('')
     }
 
+    const WordsCap = words.map((word)=>{
+       const capitalize = word.charAt(0).toUpperCase() + word.slice(1)
+      return capitalize
+    })
+    
     const predictionFun = (e:React.ChangeEvent<HTMLInputElement>) =>{
         setValue(e.target.value)
         if(e.target.value === '') return []
-        const matchWord = words.filter(word=> word.startsWith(e.target.value))
-        setPredicition(matchWord.map((word,indx) =>(
+        const valueCpitalize = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1)
+        const wordsUp = WordsCap.filter(word=> word.startsWith(e.target.value))
+        const wordsLow = words.filter(word=> word.startsWith(e.target.value))
+        const  matchWords = e.target.value === valueCpitalize ? wordsUp : wordsLow ;
+
+        setPredicition( matchWords.map((word,indx) =>(
             <li key={indx} className=' list-none hover:bg-slate-100 p-2 flex gap-2 items-center' onClick={(e)=>selected(e)}>
                <div className='w-4'>{lens}</div> {word}
             </li>
         )))
     }
+
+
     const randomwords = () => {
         const shuffle = (arr:string[]) => {
             return arr.sort(()=>Math.random() - 0.5)
@@ -43,20 +53,11 @@ function SearchBar() {
              
     }
 
-//  setRandomWords(newArr.map((word,indx)=>(
-//             <li key={indx} className='  list-none hover:bg-slate-100 p-2 flex gap-2 items-center' >
-//                {word}
-//             </li>
-//         )) )
-
     useEffect(()=>{
         randomwords()
-      
-        
     },[])
    
 
-   console.log(randomWords)
 
   return (
     <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5 bg-white'>
