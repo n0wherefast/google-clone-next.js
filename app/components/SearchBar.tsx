@@ -46,7 +46,7 @@ function SearchBar() {
         const shuffle = (arr:string[]) => {
             return arr.sort(()=>Math.random() - 0.5)
         }
-        const newArr = shuffle(words).slice(0,9)  
+        const newArr = shuffle(words).slice(0,6)  
          setRandomWords(newArr.map((word,indx) =>(
             <li className='list-none hover:bg-slate-100 p-2 flex gap-2 items-center' key={indx} onClick={(e)=>selected(e)}><MdTrendingUp size={30}/> {word} </li>
          )))
