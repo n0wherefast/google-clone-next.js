@@ -56,14 +56,9 @@ function SearchBar() {
     useEffect(()=>{
         randomwords()
         if(value === '') {
-        console.log('empty')
         setPredicition(undefined)
        }
     },[value])
-
-    
-   
-  console.log(predicition)
 
   return (
     <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5 bg-white'>
