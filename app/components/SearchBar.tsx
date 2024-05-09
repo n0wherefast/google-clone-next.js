@@ -55,15 +55,21 @@ function SearchBar() {
 
     useEffect(()=>{
         randomwords()
-    },[])
-   
+        if(value === '') {
+        console.log('empty')
+        setPredicition(undefined)
+       }
+    },[value])
 
+    
+   
+  console.log(predicition)
 
   return (
     <div className='  flex justify-center flex-shrink-0   box-border w-full max-h-[160px] p-5 bg-white'>
         <form action="" className='w-full'>
         <div className=' my-0 mb-6 mx-auto w-auto max-w-[584px] pt-[6px] relative '>
-            <div className={`${isClick== true? 'flex-col':'flex-row'} hover:shadow-[0_2px_10px_rgba(0,0,0,0.3)] flex  z-[10] relative min-h-[44px] border border-[#dfe1e5;] shadow-none rounded-3xl my-0 w-auto  max-w-[584px]`}>  
+            <div className={`${isClick== true? 'flex-col':'flex-row'} hover:shadow-[0_2px_10px_rgba(0,0,0,0.3)] flex  z-[10]  relative min-h-[44px] border border-[#dfe1e5;] shadow-none rounded-3xl my-0 w-auto  max-w-[584px]`}>  
                 <div className='  flex  items-center  flex-1 pt-[5px] pr-[8px] p-[5px]  pl-[14px] '>
                     <div className='w-5'>
                         {lens}
@@ -84,13 +90,13 @@ function SearchBar() {
                     </div>  
                     </div>
                 </div>
-                <div  className={` ${isClick == true ? 'flex':'hidden'} bg-white rounded-3xl  mt-2 w-full min-h-36 flex-col justify-center p-2 pl-5 gap-2 `}>
+                <div  className={` ${isClick == true ? 'flex':'hidden'} bg-white  rounded-3xl  mt-2 w-full min-h-36 flex-col justify-center p-2 pl-5 gap-2 `}>
                 <div className='w-full border-b border-zinc-200 bg-white '/> 
-                    <h2 className=' w-full font-semibold'>Ricerche di Tendenza</h2>
                         <div className={` ${isEmpty}`}>{predicition}</div>
-                        
+                        { predicition === undefined ? <h2 className=' w-full font-semibold'>Ricerche di Tendenza</h2> :null }
+   
                     <div className='bg-white ' onClick={()=>setIsClick(false)}>
-                        { randomWords   }
+                        { predicition === undefined ? randomWords : null  }
                     </div>
                </div>
             </div>
